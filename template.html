@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+    <style>
+      @media print {
+        @page {
+          size: letter portrait;
+          margin: 0.5in;
+        }
+      }
+      #titlepage {
+        page-break-after: always;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3in;
+      }
+      #titlepage h2, #titlepage div {
+        max-width: 6in;
+      }
+      #titlepage div {
+        margin-top: 0.5in;
+      }
+      .book-cover {
+        float: left;
+        margin-right: 0.25in;
+        margin-bottom: 0.25in;
+      }
+      body {
+        font-family: 'Quattrocento', serif;
+        margin: 0;
+      }
+      .book-container {
+        margin: 0.5in;
+        page-break-inside: avoid;
+        overflow: auto;
+      }
+      .book-title {
+        margin-top: 0;
+      }
+      .book-description {
+        font-size: 0.13in;
+      }
+      .book-cover, .book-title, .book-subtitle, .book-author {
+        page-break-after: avoid-page;
+      }
+    </style>
+    <script>
+      function addBooks(books) {
+        const template = document.getElementById('book');
+        const container = document.getElementById('books');
+        for (let book of books) {
+          let clone = template.content.cloneNode(true);
+          clone.querySelector('.book-cover').src = book.thumbnail;
+          clone.querySelector('.book-title').textContent = book.title;
+          clone.querySelector('.book-subtitle').textContent = book.subtitle || '';
+          clone.querySelector('.book-author').textContent = book.author;
+          clone.querySelector('.book-description').textContent = book.description;
+          container.appendChild(clone);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="titlepage">
+      <!-- Insert content here-->
+    </div>
+    <div id="books"></div>
+    <template id="book">
+      <div class="book-container">
+        <img class="book-cover">
+        <h1 class="book-title"></h1>
+        <h2 class="book-subtitle"></h2>
+        <h3 class="book-author"></h3>
+        <span class="book-description"></span>
+      </div>
+  </template>
+  </body>
+</html>
