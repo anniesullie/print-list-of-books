@@ -3,6 +3,7 @@
 This repo contains two Node.js scripts intended to make it easy to print out
 a list of books.
 
+## Get a list of books
 `node get_nyt_bestsellers.js  <listname> <outfile.json> <API Key>`
 
 This script grabs information on the given New York Times Bestseller list.
@@ -33,6 +34,7 @@ This script grabs information on the given New York Times Bestseller list.
 The output JSON file contains title, subtitle, description, author, and
 thumbnail image link for each book in the bestseller list.
 
+## Print a list of books
 `node generate_pdf_from_booklist.js <books.json> <outfile.pdf>`
 
 This script generates a printable PDF from the book list output by the previous
